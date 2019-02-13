@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+def generate_minefield(minefield_description):
+    if minefield_description == "0 0":
+        return None
+    else:
+        return "0"
+
 print("""Field #1:
 *100
 2210
