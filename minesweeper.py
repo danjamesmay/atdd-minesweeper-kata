@@ -5,11 +5,14 @@ def generate_minefield(minefield_description):
         return None
 
     output = ""
-    for i in minefield_description.split("\n")[1]:
-        if i == "*":
-            output += "* "
-        else:
-            output += "0 "
+    lines = minefield_description.split("\n")
+    for line in lines[1:]:
+        for i in line:
+            if i == "*":
+                output += "* "
+            else:
+                output += "0 "
+        output = output.rstrip() + "\n"
     return output.rstrip()
 
 

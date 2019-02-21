@@ -23,3 +23,21 @@ def test_outputs_minefield_for_1x2_minefield_description_with_no_mines():
 ..""")
 
     assert output == "0 0"
+
+def test_outputs_minefield_for_2x1_minefield_description_with_no_mines():
+    output = generate_minefield("""2 1
+.
+.""")
+
+    assert output == """0
+0"""
+
+def test_outputs_minefield_for_3x1_minefield_description_with_no_mines():
+    output = generate_minefield("""3 1
+.
+.
+.""")
+
+    assert output == """0
+0
+0"""
