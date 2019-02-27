@@ -66,6 +66,23 @@ def expected_minefield(text):
             00
             00
         """)
+    ),
+    (
+        minefield_description("""
+            5 4
+            ....
+            ....
+            ....
+            ....
+            ....
+        """),
+        expected_minefield("""
+            0000
+            0000
+            0000
+            0000
+            0000
+        """)
     )
 ])
 def test_outputs_minefield_for_n_by_m_minefield_description_with_no_mines(
