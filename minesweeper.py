@@ -9,10 +9,10 @@ def generate_minefield(minefield_description):
     for line in lines[1:]:
         for i in line:
             if i == "*":
-                output += "* "
+                output += "*"
             else:
-                output += "0 "
-        output = output.rstrip() + "\n"
+                output += "0"
+        output += "\n"
     return output.rstrip()
 
 
