@@ -91,8 +91,18 @@ def test_outputs_minefield_for_n_by_m_minefield_description_with_no_mines(
     assert generate_minefield(minefield_description) == expected_minefield
 
 
-def test_outputs_minefield_for_1x1_minefield_description_with_one_mine():
-    output = generate_minefield("""1 1
-*""")
-
-    assert output == "*"
+@pytest.mark.parametrize("minefield_description,expected_minefield", [
+    (
+        minefield_description("""
+            1 1
+            *
+        """),
+        expected_minefield("""
+            *
+        """)
+    )
+])
+def test_outputs_minefield_for_n_by_m_minefield_description_with_one_mine(
+    minefield_description,
+    expected_minefield):
+    assert generate_minefield(minefield_description) == expected_minefield
