@@ -156,7 +156,7 @@ def test_outputs_minefield_for_n_by_m_minefield_description_with_one_adjacent_mi
     ),
     (
         minefield_description("""
-            1 3
+            1 5
             *.*.*
         """),
         expected_minefield("""
@@ -165,13 +165,40 @@ def test_outputs_minefield_for_n_by_m_minefield_description_with_one_adjacent_mi
     ),
     (
         minefield_description("""
-            1 3
+            1 5
             ..*.*
         """),
         expected_minefield("""
             01*2*
         """)
     ),
+    (
+        minefield_description("""
+            1 5
+            ..**.
+        """),
+        expected_minefield("""
+            01**1
+        """)
+    ),
+    (
+        minefield_description("""
+            1 5
+            ..***
+        """),
+        expected_minefield("""
+            01***
+        """)
+    ),
+    (
+        minefield_description("""
+            1 5
+            *****
+        """),
+        expected_minefield("""
+            *****
+        """)
+    )
 ])
 def test_outputs_minefield_for_n_by_m_minefield_description_with_two_adjacent_mines(
     minefield_description,
