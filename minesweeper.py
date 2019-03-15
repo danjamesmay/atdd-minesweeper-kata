@@ -6,25 +6,26 @@ def generate_minefield(minefield_description):
 
     output = ""
     lines = minefield_description.split("\n")
-    for line in lines[1:]:
-        for i, cell in enumerate(line):
+    field_description = lines[1:]
+    for y, line in enumerate(field_description):
+        for x, cell in enumerate(line):
             if cell == "*":
                 output += "*"
             else:
-                output += _mines_in_proximity(i, line)
+                output += _mines_in_proximity(x, y, field_description)
                 
         output += "\n"
     return output.rstrip()
 
-def _mines_in_proximity(i, line):
-    def mine_to_the_left(i, line):
-        return i < len(line) - 1 and line[i+1] == "*"
-    def mine_to_the_right(i, line):
-        return i - 1 >= 0 and line[i-1] == "*"
+def _mines_in_proximity(x, y, field_description):
+    def mine_to_the_right():
+        return x < len(field_description[y]) - 1 and field_description[y][x+1] == "*"
+    def mine_to_the_left():
+        return x - 1 >= 0 and field_description[y][x-1] == "*"
     mines = 0
-    if mine_to_the_left(i, line):
+    if mine_to_the_left():
         mines += 1
-    if mine_to_the_right(i, line):
+    if mine_to_the_right():
         mines += 1
     return str(mines)
 
