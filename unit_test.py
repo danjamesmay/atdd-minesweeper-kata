@@ -204,3 +204,22 @@ def test_outputs_minefield_for_n_by_m_minefield_description_with_two_adjacent_mi
     minefield_description,
     expected_minefield):
     assert generate_minefield(minefield_description) == expected_minefield
+
+
+@pytest.mark.parametrize("minefield_description,expected_minefield", [
+    (
+        minefield_description("""
+            2 2
+            **
+            *.
+        """),
+        expected_minefield("""
+            **
+            *3
+        """)
+    )
+])
+def test_outputs_minefield_for_n_by_m_minefield_description_with_three_adjacent_mines(
+    minefield_description,
+    expected_minefield):
+    assert generate_minefield(minefield_description) == expected_minefield

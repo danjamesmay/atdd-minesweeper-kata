@@ -22,10 +22,18 @@ def _mines_in_proximity(x, y, field_description):
         return x < len(field_description[y]) - 1 and field_description[y][x+1] == "*"
     def mine_to_the_left():
         return x - 1 >= 0 and field_description[y][x-1] == "*"
+    def mine_to_the_top():
+        return y != 0 and field_description[y-1][x] == "*"
+    def mine_to_the_top_left():
+        return y != 0 and field_description[y-1][x-1] == "*" 
     mines = 0
     if mine_to_the_left():
         mines += 1
     if mine_to_the_right():
+        mines += 1
+    if mine_to_the_top():
+        mines += 1
+    if mine_to_the_top_left():
         mines += 1
     return str(mines)
 
