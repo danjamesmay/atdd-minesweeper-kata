@@ -136,6 +136,17 @@ def test_outputs_minefield_for_n_by_m_minefield_description_with_no_mines(
         expected_minefield("""
             1*11*1
         """)
+    ),
+    (
+        minefield_description("""
+            2 2
+            .*
+            ..
+        """),
+        expected_minefield("""
+            1*
+            11
+        """)
     )
 ])
 def test_outputs_minefield_for_n_by_m_minefield_description_with_one_adjacent_mine(
@@ -216,6 +227,28 @@ def test_outputs_minefield_for_n_by_m_minefield_description_with_two_adjacent_mi
         expected_minefield("""
             **
             *3
+        """)
+    ),
+    (
+        minefield_description("""
+            2 2
+            .*
+            **
+        """),
+        expected_minefield("""
+            3*
+            **
+        """)
+    ),
+    (
+        minefield_description("""
+            2 2
+            .**
+            ..*
+        """),
+        expected_minefield("""
+            1**
+            13*
         """)
     )
 ])
