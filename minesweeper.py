@@ -7,25 +7,34 @@ def generate_minefield(minefield_description):
     output = ""
     lines = minefield_description.split("\n")
     field_description = lines[1:]
-    for y, line in enumerate(field_description):
-        for x, cell in enumerate(line):
-            if cell == "*":
+    for row, _ in enumerate(field_description):
+        for column, _ in enumerate(field_description[row]):
+            if field_description[row][column] == "*":
                 output += "*"
             else:
-                output += _mines_in_proximity(x, y, field_description)
+                output += _count_of_mines_in_proximity(column, row, field_description)
                 
         output += "\n"
     return output.rstrip()
 
-def _mines_in_proximity(x, y, field_description):
+def _count_of_mines_in_proximity(column, row, field_description):
     def mine_to_the_right():
-        return x < len(field_description[y]) - 1 and field_description[y][x+1] == "*"
+        return no_more_mines_to_the_right() and field_description[row][column+1] == "*"    
     def mine_to_the_left():
-        return x - 1 >= 0 and field_description[y][x-1] == "*"
+        return no_more_mines_to_left() and field_description[row][column-1] == "*"
+    
     def mine_to_the_top():
-        return y != 0 and field_description[y-1][x] == "*"
+        return no_more_mines_above() and field_description[row-1][column] == "*"
     def mine_to_the_top_left():
-        return y != 0 and field_description[y-1][x-1] == "*" 
+        return no_more_mines_above() and field_description[row-1][column-1] == "*" 
+
+    def no_more_mines_to_left():
+        return column - 1 >= 0
+    def no_more_mines_to_the_right():
+        return column < len(field_description[row]) - 1
+    def no_more_mines_above():
+        return row != 0
+
     mines = 0
     if mine_to_the_left():
         mines += 1
